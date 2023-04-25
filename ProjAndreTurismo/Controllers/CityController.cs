@@ -15,5 +15,20 @@ namespace ProjAndreTurismo.Controllers
             return new CityService().Insert(city);
         }
 
+        public List<City> FindAll()
+        {
+            return new CityService().FindAll();
+        }
+        public int Delete(int id)
+        {
+            return new CityService().Delete(id);
+        }
+
+        public int Update(City city)
+        {
+            return new CityService().Update(city);
+        }
+
+
     }
 }

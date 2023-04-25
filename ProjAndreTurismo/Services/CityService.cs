@@ -38,5 +38,52 @@ namespace ProjAndreTurismo.Services
 
             return aux;
         }
+
+        public List<City> FindAll()
+        {
+            connection.Open();
+            List<City> cities = new();
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("select  c.Id,");
+            sb.Append("		c.CityName");
+            sb.Append("		from City c");
+
+            SqlCommand commandSelect = new(sb.ToString(), connection);
+            SqlDataReader dr = commandSelect.ExecuteReader();
+
+            while (dr.Read())
+            {
+                City city = new();
+
+                city.Id = (int)dr["Id"];
+                city.CityName = (string)dr["CityName"];
+
+                cities.Add(city);
+
+            }
+            connection.Close();
+            return cities;
+        }
+
+        public int Update(City city)
+        {
+            string update = "update City set NameCity = @NameCity where Id = @id";
+            SqlCommand commandUpdate = new SqlCommand(update, connection);
+            commandUpdate.Parameters.Add(new SqlParameter("@Id", city.Id));
+            commandUpdate.Parameters.Add(new SqlParameter("@CityName", city.CityName));
+
+            return commandUpdate.ExecuteNonQuery();
+        }
+
+
+        public int Delete(int id)
+        {
+            string _delete = "delete from City where Id =@id";
+            SqlCommand commandDelete = new SqlCommand(_delete, connection);
+            commandDelete.Parameters.Add(new SqlParameter("@id", id));
+
+            return (int)commandDelete.ExecuteNonQuery();
+        }
     }
 }

@@ -12,6 +12,7 @@ internal class Program
         Airfare airfare = new();
         Hotel hotel = new();
         Package package = new();
+        int opc = 0;
 
 
 
@@ -20,17 +21,74 @@ internal class Program
         {
 
             options = Menu();
+            
             switch (options)
             {
                 case 1:
-                    #region Cidade
-                    Console.Clear();
-                    Console.WriteLine("Insira uma cidade: ");
-                    string cityy = Console.ReadLine();
+                    while (opc != 5)
+                    {
+                        #region Cidade
+                        Console.WriteLine("1-Inserir Cidade");
+                        Console.WriteLine("2-Editar Cidade");
+                        Console.WriteLine("3-Deletar Cidade");
+                        Console.WriteLine("4-Mostrar Cidades");
+                        Console.WriteLine("5-Sair");
+                        Console.Write("O que deseja fazer?");
+                        opc = int.Parse(Console.ReadLine());
+
+                        switch (opc) //cidade
+                        {
+                            case 1: // inserir
+                                Console.Clear();
+                                Console.Write("Insira uma cidade: ");
+                                string cityy = Console.ReadLine();
+                                city.CityName = cityy;
+                                new CityController().Insert(city);
+                                Console.Clear();
+
+                                break;
+
+                            case 2: // editar
+                                Console.Clear();
+                                new CityController().FindAll().ForEach(Console.WriteLine);
+                                Console.Write("Nome da cidade a ser editada:");
+                                cityy = Console.ReadLine();
+
+                                new CityController().Update(city);
+                                Console.Clear();
+
+                                break;
+
+                            case 3:
+                                Console.Clear();
+                                new CityController().FindAll().ForEach(Console.WriteLine);
+                                Console.Write("Nome da cidade a ser deletada:");
+
+                                Console.Clear();
+
+                                break;
+
+                            case 4:
+                                Console.Clear();
+                                new CityController().FindAll().ForEach(Console.WriteLine);
+                                Console.WriteLine("Pressione qualquer tecla para sair...");
+                                Console.ReadKey();
+                                Console.Clear();
+
+                                break;
+
+                            case 5:
+                                #region Sáida do programa e tratativa 
+                                System.Environment.Exit(0);
+                                break;
+                            default:
+                                Console.WriteLine("Opção inválida!");
+                                break;
+                                #endregion
 
 
-                    city.CityName = cityy;
-                    new CityController().Insert(city);
+                        }
+                    }
                     break;
                 #endregion
 
@@ -62,7 +120,7 @@ internal class Program
 
                     new AddressController().Insert(address);
                     break;
-                    #endregion
+                #endregion
 
                 case 3:
                     #region Cliente
@@ -90,7 +148,7 @@ internal class Program
 
 
                     break;
-                    #endregion
+                #endregion
 
                 case 4:
                     #region Passagem Aérea
@@ -122,7 +180,7 @@ internal class Program
 
 
                     break;
-                    #endregion
+                #endregion
 
                 case 5:
                     #region Hotel
@@ -151,7 +209,7 @@ internal class Program
 
 
                     break;
-                    #endregion
+                #endregion
 
                 case 6:
                     #region Pacote de viagem
@@ -189,13 +247,13 @@ internal class Program
 
 
                 case 7:
-                #region Sáida do programa e tratativa 
+                    #region Sáida do programa e tratativa 
                     System.Environment.Exit(0);
                     break;
                 default:
                     Console.WriteLine("Opção inválida!");
                     break;
-                #endregion
+                    #endregion
 
             }
 
@@ -207,16 +265,16 @@ internal class Program
     private static int Menu()
     {
         Console.WriteLine("Bem vindo(a)!");
-        Console.WriteLine("Digite o número da função que deseja acessar: ");
-        Console.WriteLine("1- Cadastrar Cidade");
-        Console.WriteLine("2- Cadastrar Endereço");
-        Console.WriteLine("3- Cadastrar Cliente");
-        Console.WriteLine("4- Passagem Aérea");  
+        Console.WriteLine("1- Cidade");
+        Console.WriteLine("2- Endereço");
+        Console.WriteLine("3- Cliente");
+        Console.WriteLine("4- Passagem Aérea");
         Console.WriteLine("5- Hotel");
         Console.WriteLine("6- Pacote de viagem");
         Console.WriteLine("7- Sair do Menu");
-
+        Console.WriteLine("Digite o número da função que deseja acessar: ");
         int option = int.Parse(Console.ReadLine());
+        Console.Clear();
         return option;
     }
 }

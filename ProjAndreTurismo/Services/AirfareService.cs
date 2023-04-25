@@ -66,22 +66,20 @@ namespace ProjAndreTurismo.Services
 
             while (dr.Read())
             {
-                Address address = new();
+                Airfare airfare = new();
 
-                address.Id = (int)dr["Id"];
-                address.Street = (string)dr["Street"];
-                address.Number = (string)dr["Number"];
-                address.Neighborhood = (string)dr["Neighborhood"];
-                address.PostalCode = (string)dr["PostalCode"];
-                address.RegisterDate = (DateTime)dr["RegisterDate"];
-                address.City = new City() { CityName = (string)dr["CityName"] };
+                //airfare.Id = (int)dr["Id"];
+                //airfare.Origin = (string)dr["Street"];
+                //airfare.Destiny = (string)dr["Number"];
+                //airfare.Price = (int)dr["Price"];
+                //airfare.Price = (int)dr["Price"];
 
-                addresses.Add(address);
+                airfares.Add(airfare);
 
             }
             connection.Close();
 
-            return addresses;
+            return airfares;
 
         }
 
