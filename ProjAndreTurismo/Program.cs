@@ -272,7 +272,7 @@ internal class Program
         Console.WriteLine("5- Hotel");
         Console.WriteLine("6- Pacote de viagem");
         Console.WriteLine("7- Sair do Menu");
-        Console.WriteLine("Digite o número da função que deseja acessar: ");
+        Console.Write("Digite o número da função que deseja acessar: ");
         int option = int.Parse(Console.ReadLine());
         Console.Clear();
         return option;
