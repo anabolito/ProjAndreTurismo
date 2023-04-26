@@ -12,7 +12,7 @@ namespace Services
             cityRepository = new CityRepository();
         }
 
-        public bool Insert(City city)
+        public City Insert(City city)
         {
             return cityRepository.Insert(city);
         }
@@ -30,6 +30,11 @@ namespace Services
         public List<City> GetAll()
         {
             return cityRepository.GetAll();
+        }
+
+        public City GetById(int id)
+        {
+            return cityRepository.GetById(id);
         }
 
     }

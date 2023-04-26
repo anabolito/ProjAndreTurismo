@@ -10,9 +10,10 @@ namespace Repositories
 {
     public interface ICityRepository
     {
-        bool Insert(City city);
+        City Insert(City city);
         bool Delete(City city);
         bool Update(City city); 
+        City GetById(int id);
         List<City> GetAll();
     }
 

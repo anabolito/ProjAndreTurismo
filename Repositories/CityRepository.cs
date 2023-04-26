@@ -14,17 +14,15 @@ namespace Repositories
             Conn = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
         }
 
-        public bool Insert(City city)
+        public City Insert(City city)
         {
-            var status = false;
+            var id = 0;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                db.Execute(City.INSERT, city);
-                status = true;
-                db.Close();
+                id = db.ExecuteScalar<int>(City.INSERT, city);
             }
-            return status;
+            city.Id = id;
+            return city;
         }
 
         public bool Delete(City city)
@@ -59,6 +57,15 @@ namespace Repositories
             }
         }
 
-       
+        public City GetById(int id)
+        {
+            using (var db = new SqlConnection(Conn))
+            {
+                var city = db.Query<City>(City.GETBYID, new { @Id = id });
+                return (City)city;
+            }
+        }
+
+
     }
 }

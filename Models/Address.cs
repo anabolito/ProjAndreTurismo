@@ -8,11 +8,11 @@ namespace Models
 {
     public class Address
     {
-        public readonly static string INSERT = "Insert into Address (Street, Number, Neighboorhood, PostalCode, IdCity)" +
-                                "values (@Street, @Number, @Neighboorhood, @PostalCode, @IdCity)";
+        public readonly static string INSERT = "Insert into Address (Street, Number, Neighborhood, PostalCode, IdCity)" +
+                                "values (@Street, @Number, @Neighborhood, @PostalCode, @IdCity)";
         public readonly static string GETALL = "select * from Address ad, City c where ad.IdCity = c.Id";
         public readonly static string DELETE = "delete from Address where Id = @Id";
-        public readonly static string UPDATE = "update Address set";
+        public readonly static string UPDATE = "update Address set Street = @Street, Number = @Number , Neighborhood = @Neighborhood, PostalCode = @PostalCode, IdCity = @IdCity where Id = @Id";
 
 
 

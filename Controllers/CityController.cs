@@ -12,7 +12,7 @@ namespace Controllers
             cityService = new CityService();
         }
 
-        public bool Insert(City city)
+        public City Insert(City city)
         {
             return cityService.Insert(city);
         }
